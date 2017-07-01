@@ -1,0 +1,11 @@
+{
+    "driver": "postgresql",
+    "maxConnections" : 15,
+    "keyNamingConvention": "snake_case",
+    "migrationEntityName": "fluent",
+    "pivotNameConnector": "_",
+    "autoForeignKeys": true,
+    "defaultPageKey": "page",
+    "defaultPageSize": 10,
+    "log": false
+}

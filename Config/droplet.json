@@ -1,0 +1,19 @@
+{
+    "server": "engine",
+    "client": "engine",
+    "console": "terminal",
+    "log": "console",
+    "hash": "bcrypt",
+    "cipher": "crypto",
+
+    "middleware": [
+                   "error",
+                   "heroku-https",
+                   "date",
+                   "file"
+                   ],
+
+    "commands": [
+                 "prepare"
+                 ]
+}
