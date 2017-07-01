@@ -37,10 +37,10 @@ There's an option to use `vapor toolbelt`, but I prefer to do this manually:
 * * create app
 * * add postgres database
 * * settings - add vapor buildpack: https://github.com/vapor-community/heroku-buildpack
-* git clone this repo to your mac
+* `git clone https://github.com/truemetal/vapor-2-heroku-auth-template.git` to your mac
 * generate crypto keys by running `./crypto.sh`
-* git remote add heroku \<your heroku app url\> 
-* git push heroku master
+* `git remote add heroku` \<your heroku app url\> 
+* `git push heroku master`
 
 ## Contribution
 
