@@ -1,4 +1,5 @@
-This repo is a `vapor-2` (a `swift` framework) app template with auth routes, and it's ready to be deployed to `Heroku`
+This repo is a `vapor-2` (a `swift` framework) app template with auth routes, and it's ready to be deployed to `Heroku`.
+The purpose of this is to serve me as a starting point for my apps and to inspire you to build your own! You're absolutely welcome to use this template if you feel it suffices your needs. 
 <br><br>
 
 ## Deployment demo
