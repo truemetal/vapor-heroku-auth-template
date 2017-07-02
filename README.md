@@ -6,7 +6,7 @@ This repo is a `vapor-2` (a `swift` framework) app template with auth routes, an
 * `Heroku` / `postgres` ready
 * `HTTPS` only, `HTTP` requests are rejected
 * Script for quick change of crypto.json keys
-* pre-populated with 4 user accounts - `u1`, `u2`, `u3` and `u4`
+* Pre-populated with 4 user accounts - `u1`, `u2`, `u3` and `u4`
 * * passwod is `123` - same for all of them
 * * comes with pre-populated access tokens - `u1 token`, `u2 token`, `u3 token` and `u4 token`
 
@@ -45,6 +45,7 @@ There's an option to use `vapor toolbelt`, but I prefer to do this manually:
 * * settings - add vapor buildpack: https://github.com/vapor-community/heroku-buildpack
 * `git clone https://github.com/truemetal/vapor-2-heroku-auth-template.git` to your mac
 * generate crypto keys by running `./crypto.sh`
+* `git commit -am "new crypto keys"`
 * `git remote add heroku <your heroku app url>`
 * `git push heroku master`
 
