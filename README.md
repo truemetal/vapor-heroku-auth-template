@@ -8,7 +8,7 @@ This repo is a `vapor-2` (a `swift` framework) app template with auth routes, an
 ## Features
 
 * `Heroku` / `postgres` ready
-* `HTTPS` only, `HTTP` requests are rejected (403 forbidden)
+* `HTTPS` only, `HTTP` requests are rejected with 403 forbidden
 * Script for quick change of crypto.json keys
 * Pre-populated with 4 user accounts - `u1`, `u2`, `u3` and `u4`
 * * passwod is `123` - same for all of them
