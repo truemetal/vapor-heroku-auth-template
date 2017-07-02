@@ -1,3 +1,6 @@
+This repo is a `vapor-2` (a `swift` framework) app template with auth routes, and it's ready to be deployed to `Heroku`
+<br><br><br>
+
 ## Features
 
 * Heroku / postgres ready
@@ -6,14 +9,14 @@
 
 ## What's included
 
-Public routes:
+#### Public routes:
 
 * `GET` `/`, `/hello`, `/hello/name`
 * * hello routes for quick tests
 * `wss://host/ws`
 * * a websocket connection, will reverse and return whatever you send it
 
-Auth routes:
+#### Auth routes:
 
 * `POST` /register 
 * * send `username` and `password` as form-data
@@ -22,12 +25,12 @@ Auth routes:
 * `POST` /logout
 * * auth protected, removes token
 
-Token protected:
+#### Token protected:
 
 * `GET` /me 
 * * will return current username
 * `GET` /users
-* * will return list of all users
+* * will return list of all users (except for the one making the request)
 
 ## Deploy
 
@@ -39,8 +42,13 @@ There's an option to use `vapor toolbelt`, but I prefer to do this manually:
 * * settings - add vapor buildpack: https://github.com/vapor-community/heroku-buildpack
 * `git clone https://github.com/truemetal/vapor-2-heroku-auth-template.git` to your mac
 * generate crypto keys by running `./crypto.sh`
-* `git remote add heroku` \<your heroku app url\> 
+* `git remote add heroku <your heroku app url>`
 * `git push heroku master`
+
+##### and to move it to your github / bitbucket 
+
+* `git remote rm origin`
+* `git remote add origin <your repo path>`
 
 ## Contribution
 
