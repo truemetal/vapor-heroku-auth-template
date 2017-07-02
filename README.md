@@ -46,7 +46,7 @@ There's an option to use `vapor toolbelt`, but I prefer to do this manually:
 * `git clone https://github.com/truemetal/vapor-2-heroku-auth-template.git` to your mac
 * generate crypto keys by running `./crypto.sh`
 * `git commit -am "new crypto keys"`
-* `git remote add heroku <your heroku app url>`
+* `git remote add heroku <your heroku app git url>`
 * `git push heroku master`
 
 ##### and to move it to your github / bitbucket 
