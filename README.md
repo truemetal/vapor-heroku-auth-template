@@ -2,8 +2,9 @@ This repo is a `vapor-2` (a `swift` framework) app template with auth routes, an
 
 The main purpose of this is to serve me as a starting point for my apps and to inspire you to hack your own! Or please feel free to just use this as a starting template for your apps! 
 
-Cheers,
-Dan
+Cheers,<br>
+Dan<br>
+http://ios-engineer.com
 <br><br>
 
 ## Deployment demo
