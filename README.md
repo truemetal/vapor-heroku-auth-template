@@ -15,7 +15,8 @@ let res = [account, host].joined(separator: "@")
 ```
 
 Cheers,<br>
-Dan http://ios-engineer.com
+Dan
+<br>http://ios-engineer.com
 <br><br>
 
 ## Deployment demo
