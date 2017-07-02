@@ -3,9 +3,12 @@ This repo is a `vapor-2` (a `swift` framework) app template with auth routes, an
 
 ## Features
 
-* Heroku / postgres ready
+* `Heroku` / `postgres` ready
 * `HTTPS` only, `HTTP` requests are rejected
 * Script for quick change of crypto.json keys
+* pre-populated with 4 user accounts - `u1`, `u2`, `u3` and `u4`
+* * passwod is `123` - same for all of them
+* * comes with pre-populated access tokens - `u1 token`, `u2 token`, `u3 token` and `u4 token`
 
 ## What's included
 
