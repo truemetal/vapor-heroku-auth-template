@@ -1,5 +1,9 @@
 This repo is a `vapor-2` (a `swift` framework) app template with auth routes, and it's ready to be deployed to `Heroku`
-<br><br><br>
+<br><br>
+
+## Deployment demo
+
+[![Watch the video](https://www.evernote.com/l/AYXacetE4ElF9bMDpK0SPBS-uprA2jtp2nMB/image.png)](http://youtu.be/iSt3Izg9VAs?hd=1)
 
 ## Features
 
@@ -35,7 +39,7 @@ This repo is a `vapor-2` (a `swift` framework) app template with auth routes, an
 * `GET` /users
 * * will return list of all users (except for the one making the request)
 
-## Deploy
+## Deploy steps
 
 There's an option to use `vapor toolbelt`, but I prefer to do this manually:
 
