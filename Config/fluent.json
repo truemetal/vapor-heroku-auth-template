@@ -1,6 +1,9 @@
 {
     "driver": "postgresql",
+    
+    "//" : "reason for maxConnections limit here is to comply with heroku hobby 20 connection limit",
     "maxConnections" : 15,
+    
     "keyNamingConvention": "snake_case",
     "migrationEntityName": "fluent",
     "pivotNameConnector": "_",
