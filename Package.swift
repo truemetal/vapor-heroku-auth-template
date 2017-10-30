@@ -1,22 +1,21 @@
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
     name: "vapor-mysql",
-    targets: [
-        Target(name: "App"),
-        Target(name: "Run", dependencies: ["App"]),
-    ],
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 2),
-        .Package(url: "https://github.com/vapor-community/postgresql-provider.git", majorVersion: 2, minor: 0),
-        .Package(url: "https://github.com/vapor/auth-provider.git", majorVersion: 1)
+        .package(url: "https://github.com/vapor/vapor.git", .upToNextMajor(from: "2.1.0")),
+        .package(url: "https://github.com/vapor/auth-provider.git", .upToNextMajor(from: "1.2.0")),
+        .package(url: "https://github.com/vapor/fluent-provider.git", .upToNextMajor(from: "1.2.0")),
+        .package(url: "https://github.com/vapor-community/postgresql-provider.git", .upToNextMajor(from: "2.1.0"))
     ],
-    exclude: [
-        "Config",
-        "Database",
-        "Localization",
-        "Public",
-        "Resources"
+    targets: [
+        .target(name: "App", dependencies: ["Vapor", "AuthProvider", "FluentProvider", "PostgreSQLProvider"],
+                exclude: [
+                    "Config",
+                    "Public",
+                    "Resources",
+                    ]),
+        .target(name: "Run", dependencies: ["App"])
     ]
 )
-

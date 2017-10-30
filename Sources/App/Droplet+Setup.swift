@@ -1,20 +1,17 @@
 @_exported import Vapor
-import AuthProvider
 
 weak var drop: Droplet!
 
-extension Droplet
-{
-    public func setup() throws
-    {
+extension Droplet {
+    public func setup() throws {
         drop = self
         try setupRoutes()
         seedData()
     }
     
-    func seedData()
-    {
+    func seedData() {
         guard (try? User.count()) == 0 else { return }
+        
         let u1 = try? User.register(username: "u1", password: "123")
         let u2 = try? User.register(username: "u2", password: "123")
         let u3 = try? User.register(username: "u3", password: "123")

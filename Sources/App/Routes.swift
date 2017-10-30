@@ -2,20 +2,17 @@ import Vapor
 import AuthProvider
 import Foundation
 
-extension Droplet
-{
+extension Droplet {
     var tokenAuthed: RouteBuilder { return grouped(TokenAuthenticationMiddleware(User.self)) }
     var passwordAuthed: RouteBuilder { return grouped(PasswordAuthenticationMiddleware(User.self)) }
     
-    func setupRoutes() throws
-    {
+    func setupRoutes() throws {
         setupPublicRoutes()
         setupAuthRoutes()
         setupProtectedRoutes()
     }
     
-    func setupPublicRoutes()
-    {
+    func setupPublicRoutes() {
         get() { _ in
             "This is a simple vapor-2 API template with login/signup routes, prepared to be deployed on heroku\n"
         }
@@ -34,8 +31,7 @@ extension Droplet
         }
     }
     
-    func setupProtectedRoutes()
-    {
+    func setupProtectedRoutes() {
         tokenAuthed.get("me") { req in
             return try req.user().username
         }
@@ -46,10 +42,8 @@ extension Droplet
         }
     }
     
-    func setupAuthRoutes()
-    {
-        tokenAuthed.post("logout")
-        { req in
+    func setupAuthRoutes() {
+        tokenAuthed.post("logout") { req in
             guard let tokenStr = req.auth.header?.bearer?.string,
                 let token = try AccessToken.makeQuery().filter(AccessToken.Fields.token, tokenStr).first()
                 else { throw Abort.badRequest }
@@ -57,8 +51,7 @@ extension Droplet
             return Response(status: .ok)
         }
         
-        post("register")
-        { req in
+        post("register") { req in
             guard let username = req.data["username"]?.string,
                 let password = req.data["password"]?.string
                 else { throw Abort(.badRequest) }
@@ -70,8 +63,7 @@ extension Droplet
             return try JSON(node: ["token" : token.token, "user" : try user.makeJSON()])
         }
         
-        passwordAuthed.post("login")
-        { req in
+        passwordAuthed.post("login") { req in
             let user = try req.user()
             let token = try AccessToken.generate(for: user)
             try token.save()

@@ -1,5 +1,4 @@
-extension StructuredDataWrapper
-{
+extension StructuredDataWrapper {
     func get<T, E: RawRepresentable>(_ field: E) throws -> T where E.RawValue == String {
         return try get(field.rawValue)
     }
@@ -10,8 +9,7 @@ extension StructuredDataWrapper
 }
 
 import Fluent
-extension QueryRepresentable where Self: ExecutorRepresentable
-{
+extension QueryRepresentable where Self: ExecutorRepresentable {
     func filter<E: RawRepresentable>(_ field: E, _ value: NodeRepresentable?) throws -> Query<Self.E>
         where E.RawValue == String
     {
@@ -19,18 +17,14 @@ extension QueryRepresentable where Self: ExecutorRepresentable
     }
 }
 
-extension Creator
-{
+extension Creator {
     func string<E: RawRepresentable>(_ name: E, optional: Bool = true, unique: Bool = false)
-        where E.RawValue == String
-    {
+        where E.RawValue == String {
         string(name.rawValue, optional: optional, unique: unique)
     }
     
     func int<E: RawRepresentable>(_ name: E, optional: Bool = true, unique: Bool = false)
-        where E.RawValue == String
-    {
+        where E.RawValue == String {
         int(name.rawValue, optional: optional, unique: unique)
     }
-
 }

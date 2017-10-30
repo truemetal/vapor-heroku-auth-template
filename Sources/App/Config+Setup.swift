@@ -4,10 +4,8 @@ import AuthProvider
 
 weak var config: Config!
 
-extension Config
-{
-    public func setup() throws
-    {
+extension Config {
+    public func setup() throws {
         config = self
         
         Node.fuzzy = [Row.self, JSON.self, Node.self]
@@ -23,8 +21,7 @@ extension Config
         try addProvider(FluentProvider.Provider.self)
     }
     
-    private func setupPreparations() throws
-    {
+    private func setupPreparations() throws {
         preparations.append(User.self)
         preparations.append(AccessToken.self)
     }

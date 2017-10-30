@@ -1,10 +1,9 @@
 import Vapor
 import FluentProvider
 
-final class User: Model
-{
-    let storage = Storage()
+final class User: Model {
     enum Fields: String { case id, username, password }
+    let storage = Storage()
     let username: String
     var password: String?
     
@@ -28,10 +27,8 @@ extension User: Timestampable { }
 
 // MARK: Preparation
 
-extension User: Preparation
-{
-    static func prepare(_ database: Database) throws
-    {
+extension User: Preparation {
+    static func prepare(_ database: Database) throws {
         try database.create(self) { table in
             table.id()
             table.string(Fields.username, optional: false, unique: true)
@@ -46,10 +43,8 @@ extension User: Preparation
 
 // MARK: JSON
 
-extension User: JSONConvertible
-{
-    convenience init(json: JSON) throws
-    {
+extension User: JSONConvertible {
+    convenience init(json: JSON) throws {
         try self.init(username: json.get(Fields.username))
         id = try json.get(Fields.id)
     }
@@ -71,17 +66,14 @@ extension User: TokenAuthenticatable {
     public typealias TokenType = AccessToken
 }
 
-extension User: PasswordAuthenticatable
-{
+extension User: PasswordAuthenticatable {
     static var usernameKey: String { return Fields.username.rawValue }
     static var passwordVerifier: PasswordVerifier? { return drop.hash as? PasswordVerifier }
     var hashedPassword: String? { return password }
 }
 
-extension User
-{
-    class func register(username: String, password: String) throws -> User
-    {
+extension User {
+    class func register(username: String, password: String) throws -> User {
         let user = User(username: username)
         user.password = try drop.hash.make(password.makeBytes()).makeString()
         
@@ -96,8 +88,7 @@ extension User
 
 // MARK: helpers
 
-extension Request
-{
+extension Request {
     func user() throws -> User {
         return try auth.assertAuthenticated()
     }
