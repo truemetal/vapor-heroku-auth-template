@@ -26,7 +26,7 @@ extension Droplet {
         
         socket("ws") { req, ws in
             ws.onText = { ws, text in
-                try ws.send(String(text.characters.reversed()))
+                try ws.send(String(text.reversed()))
             }
         }
     }
