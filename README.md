@@ -1,3 +1,5 @@
+### NOTE: until vapor (and related) fix their stuff, there'd be a bunch of compile warnings. Hang tight!!
+
 Hey there!
 
 This repo is a `vapor-2` (a `swift` framework) app template with auth routes, and it's ready to be deployed to `Heroku`.
