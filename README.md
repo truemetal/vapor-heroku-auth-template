@@ -1,8 +1,6 @@
-### NOTE: until vapor (and related) fix their stuff, there'd be a bunch of compile warnings. Hang tight!!
-
 Hey there!
 
-This repo is a `vapor-2` (a `swift` framework) app template with auth routes, and it's ready to be deployed to `Heroku`.
+This repo is a `vapor-2` (a `swift` web framework) app template with auth routes, and it's ready to be deployed to `Heroku`.
 
 The main purpose of this is to serve me as a starting point for my apps and to inspire you to hack your own! 
 <br>Or please feel free to just use this as a starting template for your apps! 
@@ -29,7 +27,8 @@ Dan
 
 * `Heroku` / `postgres` ready
 * `HTTPS` only, `HTTP` requests are rejected with 403 forbidden
-* Script for quick change of crypto.json keys
+* `crypto.sh`: a script to quickly generate keys in Config/crypto.json
+* `fix-xcodeproj-warnings.rb`: a script to mute vapor & it's dependencies swift 4 related warnings 
 * Pre-populated with 4 user accounts - `u1`, `u2`, `u3` and `u4`
 * * passwod is `123` - same for all of them
 * * comes with pre-populated access tokens - `u1 token`, `u2 token`, `u3 token` and `u4 token`

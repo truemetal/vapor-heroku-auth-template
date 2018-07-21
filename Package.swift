@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "vapor-mysql",
+    name: "vapor-2-heroku-auth-template",
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", .upToNextMajor(from: "2.1.0")),
         .package(url: "https://github.com/vapor/auth-provider.git", .upToNextMajor(from: "1.2.0")),
