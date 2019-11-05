@@ -1,6 +1,6 @@
 Hey there!
 
-This repo is a `vapor-2` (a `swift` web framework) app template with auth routes, and it's ready to be deployed to `Heroku`.
+This repo is a `vapor 3` (a `swift` web framework) app template with auth routes, and it's ready to be deployed to `Heroku`.
 
 The main purpose of this is to serve me as a starting point for my apps and to inspire you to hack your own! 
 <br>Or please feel free to just use this as a starting template for your apps! 
@@ -27,8 +27,6 @@ Dan
 
 * `Heroku` / `postgres` ready
 * `HTTPS` only, `HTTP` requests are rejected with 403 forbidden
-* `crypto.sh`: a script to quickly generate keys in Config/crypto.json
-* `fix-xcodeproj-warnings.rb`: a script to mute vapor & it's dependencies swift 4 related warnings 
 * Pre-populated with 4 user accounts - `u1`, `u2`, `u3` and `u4`
 * * passwod is `123` - same for all of them
 * * comes with pre-populated access tokens - `u1 token`, `u2 token`, `u3 token` and `u4 token`
@@ -62,20 +60,22 @@ Dan
 
 There's an option to use `vapor toolbelt`, but I prefer to do this manually:
 
-* prepare heroku app
-* * create app
-* * add postgres database
-* * settings - add vapor buildpack: https://github.com/vapor-community/heroku-buildpack
-* `git clone https://github.com/truemetal/vapor-2-heroku-auth-template.git` to your mac
-* generate crypto keys by running `./crypto.sh`
-* `git commit -am "new crypto keys"`
+* create `heroku` app and add `postgres` database to it
+* `git clone https://github.com/truemetal/vapor-heroku-auth-template.git` to your mac
 * `git remote add heroku <your heroku app git url>`
+* `heroku buildpacks:set https://github.com/vapor-community/heroku-buildpack.git`
 * `git push heroku master`
 
 ##### and to move it to your github / bitbucket 
 
 * `git remote rm origin`
 * `git remote add origin <your repo path>`
+
+## macOS development
+
+* Make sure to define `DATABASE_URL`
+* * e.g. something this could go to your `~/.zshrc` or `~/.bash_profile`: `export DATABASE_URL="postgresql://user@localhost:5432/database"`
+* Use `vapor xcode -y` or `swift package generate-xcodeproj` to create `.xcodeproj` and `./suppress-xcodeproj-warnings.rb` to hide warnings from vapor frameworks 
 
 ## Contribution
 

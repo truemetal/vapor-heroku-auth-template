@@ -1,72 +1,48 @@
-import Vapor
-import FluentProvider
-
-final class AccessToken: Model
-{
-    let storage = Storage()
-    enum Fields: String { case token, user_id }
-    let token: String
-    let userId: Identifier
-    
-    init(token: String, userId: Identifier) {
-        self.token = token
-        self.userId = userId
-    }
-    
-    init(row: Row) throws {
-        token = try row.get(Fields.token)
-        userId = try row.get(Fields.user_id)
-    }
-    
-    func makeRow() throws -> Row
-    {
-        var row = Row()
-        try row.set(Fields.token, token)
-        try row.set(Fields.user_id, userId)
-        return row
-    }
-    
-    var user: Parent<AccessToken, User> {
-        return parent(id: userId)
-    }
-}
-extension AccessToken: Timestampable {}
-
-extension AccessToken: Preparation
-{
-    static func prepare(_ database: Database) throws
-    {
-        try database.create(self) { table in
-            table.id()
-            table.string(Fields.token, optional: false, unique: true)
-            table.foreignId(for: User.self, optional: false)
-        }
-    }
-    
-    static func revert(_ database: Database) throws {
-        try database.delete(self)
-    }
-}
-
-extension AccessToken: JSONRepresentable
-{
-    func makeJSON() throws -> JSON
-    {
-        var json = JSON()
-        try json.set(Fields.token, token)
-        return json
-    }
-}
-
-extension AccessToken: ResponseRepresentable { }
-
+import Authentication
 import Crypto
-extension AccessToken
-{
-    static func generate(for user: User) throws -> AccessToken
-    {
-        guard let userId = user.id else { throw Abort.badRequest }
-        let random = try Crypto.Random.bytes(count: 16)
-        return AccessToken(token: random.base64Encoded.makeString(), userId: userId)
+import Vapor
+
+final class AccessToken: AppModel {
+
+    var id: Int?
+    var token: String
+    var userID: User.ID
+    var expiresAt: Date?
+    
+    static var deletedAtKey: TimestampKey? { \.expiresAt }
+    static let expirationTimeInterval: TimeInterval = 60 * 60 * 5
+    
+    init(id: Int? = nil, string: String, userID: User.ID) {
+        self.id = id
+        self.token = string
+        self.expiresAt = Date(timeInterval: Self.expirationTimeInterval, since: .init())
+        self.userID = userID
+    }
+    
+    static func create(userID: User.ID) throws -> AccessToken {
+        let string = try CryptoRandom().generateData(count: 16).base64EncodedString()
+        return .init(string: string, userID: userID)
+    }
+}
+
+extension AccessToken {
+    var user: Parent<AccessToken, User> { parent(\.userID) }
+}
+
+extension AccessToken: Token {
+    typealias UserType = User
+    static var tokenKey: WritableKeyPath<AccessToken, String> { \.token }
+    static var userIDKey: WritableKeyPath<AccessToken, User.ID> { \.userID }
+}
+
+extension AccessToken: Migration {
+    static func prepare(on conn: AppDatabase.Connection) -> Future<Void> {
+        return AppDatabase.create(AccessToken.self, on: conn) { builder in
+            builder.field(for: \.id, isIdentifier: true)
+            builder.field(for: \.token)
+            builder.field(for: \.userID)
+            builder.field(for: \.expiresAt)
+            builder.reference(from: \.userID, to: \User.id)
+        }
     }
 }
